@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Create a Map</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <link rel="stylesheet" href="http://js.arcgis.com/3.11/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" href="http://js.arcgis.com/3.11/esri/css/esri.css">
+  <style>
+    html,
+    body,
+    #mapDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+
+  <script src="http://js.arcgis.com/3.11/"></script>
+
+  <script>
+    function randomX(min, max) {
+      return Math.random() * (max - min) + min;
+    };
+
+    function randomY(min, max) {
+      return Math.random() * (max - min) + min;
+    };
+
+    function randomZ(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    };
+
+    var map;
+    require(["esri/map", "dojo/domReady!"], function(Map) {
+      map = new Map("mapDiv", {
+        center: [randomX(-73.49, -73.94), randomY(45.42, 45.68)],
+        zoom: randomZ(10, 19),
+        basemap: "satellite"
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+
+    function randomReload(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    };
+
+    setTimeout(function() {
+      location.reload();
+    }, randomReload(5, 15) * 1000);
+  </script>
+
+</head>
+
+<body class="claro">
+  <div id="mapDiv"></div>
+</body>
+
+</html>
